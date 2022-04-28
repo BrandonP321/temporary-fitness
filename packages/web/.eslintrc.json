@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "react/jsx-key": "error"
+    },
+    "settings": {
+        "react": {
+            "version": "detect",
+            "pragma": "React"
+        }
+    }
+}

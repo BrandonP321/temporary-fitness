@@ -1,0 +1,80 @@
+{
+    "root": true,
+    "env": {
+        "es2021": true
+    },
+    "extends": [
+        // "airbnb"
+        "eslint:recommended"
+        // TODO: fix import plugin to auto-sort imports
+        // "plugin:import/recommended",
+        // "plugin:import/typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "camelcase": "warn",
+        "class-methods-use-this": "error",
+        "comma-spacing": "warn",
+        "no-unused-vars": "warn",
+        "no-unused-expressions": "warn",
+        "default-case": "error",
+        "dot-notation": "warn",
+        "eqeqeq": "warn",
+        "multiline-comment-style": [
+            "error",
+            "starred-block"
+        ],
+        "no-empty": "error",
+        "no-shadow": "error",
+        // "sort-imports": [
+        //     "warn",
+        //     {
+        //         "ignoreCase": true,
+        //         "ignoreDeclarationSort": false,
+        //         "ignoreMemberSort": false,
+        //         "allowSeparatedGroups": false,
+        //         "memberSyntaxSortOrder": [
+        //             "none",
+        //             "all",
+        //             "single",
+        //             "multiple"
+        //         ]
+        //     }
+        // ],
+        "indent": [
+            "warn",
+            "tab"
+        ],
+        "no-mixed-spaces-and-tabs": "error",
+        "quotes": [
+            "warn",
+            "double"
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {},
+            "node": {}
+        }
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.test.tsx"
+            ],
+            "env": {
+                "jest": true
+            }
+        }
+    ]
+}
