@@ -30,10 +30,6 @@
         "default-case": "error",
         "dot-notation": "warn",
         "eqeqeq": "warn",
-        "multiline-comment-style": [
-            "error",
-            "starred-block"
-        ],
         "no-empty": "error",
         "no-shadow": "error",
         // "sort-imports": [
@@ -55,7 +51,6 @@
             "warn",
             "tab"
         ],
-        "no-mixed-spaces-and-tabs": "error",
         "quotes": [
             "warn",
             "double"

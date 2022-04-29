@@ -27,5 +27,6 @@
         "source.fixAll.eslint": true
     },
     "eslint.enable": true,
-    "eslint.validate": ["javascript", "typescript", "typescriptreact"]
+    "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+    "editor.insertSpaces": false
 }
