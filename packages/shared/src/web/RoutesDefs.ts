@@ -1,4 +1,4 @@
-/* Type for object of area names with string key and strin value */
+/* Type for object of area names with string key and string value */
 type TAreaNames = {[key: string]: string};
 
 /* Type for object of Areas with all the pages nested within each area */
@@ -8,7 +8,7 @@ type TAreas<AreaNames extends TAreaNames, PageNames extends string> = {
 		/* Dynamic import must use 'any' type since there isn't 
 		a generic return type used for dynamic imports */
 		areaDynamicImport: () => Promise<any>;
-        subRoutes: {
+        pages: {
             [key in PageNames]: {
                 path: string;
             }
@@ -33,15 +33,15 @@ export class InternalRouteDefs<AllAreaNames extends TAreaNames, TPageNames exten
 		this.mapFullRoutePaths();
 	}
 
-	// converts paths of subRoutes of areas to full path strings
+	// converts paths of pages of areas to full path strings
 	private mapFullRoutePaths = () => {
 		// iterate over all areas in areas obj
 		for (const areaKey in this.Areas) {
 			const area = this.Areas[areaKey];
 
 			// iterate over nested routes within area
-			for (const subRouteKey in area.subRoutes) {
-				const subRoute = area.subRoutes[subRouteKey];
+			for (const subRouteKey in area.pages) {
+				const subRoute = area.pages[subRouteKey];
 				// prepend area name to nested route's path
 				subRoute.path = `${area.name}/${subRoute.path}`;
 			}
