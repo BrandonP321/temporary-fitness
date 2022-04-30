@@ -8,6 +8,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
+	/* React Strict Mode invokes render method twice in development mode only to help find accidental side effects */
 	<React.StrictMode>
 		<App />
 	</React.StrictMode>

@@ -1,15 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { RouteDefs } from "../../global/Navigation/Routes";
+import { Routes, Route } from "react-router-dom";
+import { RouteDefs } from "../../global/Navigation/RouteDefs";
 
-const AreaPaths = RouteDefs.Areas.AreaOne.subRoutes;
+const Pages = RouteDefs.Areas.AreaOne.pages
 
 export default function AreaOne() {
+	console.log("areaone");
+	console.log(Pages.PageOne.partialPath)
 	return (
-		<Router>
-			<Routes>
-				<Route path={AreaPaths.PageOne.path} element={<h1>Page One</h1>}/>
-			</Routes>
-		</Router>
+		<Routes>
+			<Route path={Pages.PageOne.partialPath} element={<h1/>}/>
+			<Route path={Pages.PageTwo.partialPath} element={<h1/>}/>
+		</Routes>
 	)
 }

@@ -1,6 +1,6 @@
 /* Nothing should be imported from any other files within the web workspace
 to avoid loading more files than necessary at any given point in time */
-import { InternalRouteDefs } from "@tempfit/shared/src/web/RoutesDefs";
+import { InternalRouteDefs } from "@tempfit/shared/src/web/Navigation/RoutesDefs";
 
 const AreaNames = {
 	AreaOne: "AreaOnex"
@@ -14,7 +14,7 @@ export const RouteDefs = new InternalRouteDefs<typeof AreaNames, TPageNames>({ A
 	AreaOne: {
 		name: AreaNames.AreaOne,
 		areaDynamicImport: () => import("../../Areas/AreaOne/AreaOne"),
-		subRoutes: {
+		pages: {
 			PageOne: { path: "PageOneX" },
 			PageTwo: { path: "PageTwoY" }
 		}

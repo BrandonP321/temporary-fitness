@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+           "~Navigation/*" : ["./global/Navigation/*"],
+           "~Components/*": ["./global/UI/components/*"],
+           "~Areas/*": ["./Areas/*"],
+           "~Utils": ["./utils"]
+         }
+    }
+}
