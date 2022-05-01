@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./global/features/store";
+import { HelmetProvider } from "react-helmet-async";
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -13,7 +14,9 @@ root.render(
 	/* React Strict Mode invokes render method twice in development mode only to help find accidental side effects */
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			<HelmetProvider>
+				<App />
+			</HelmetProvider>
 		</Provider>
 	</React.StrictMode>
 );
