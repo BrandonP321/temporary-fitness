@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./global/features/store";
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
 	/* React Strict Mode invokes render method twice in development mode only to help find accidental side effects */
 	<React.StrictMode>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</React.StrictMode>
 );
 
