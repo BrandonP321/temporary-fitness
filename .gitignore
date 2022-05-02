@@ -104,4 +104,6 @@ dist
 .tern-port
 
 # .yarn
-.yarn/
+.yarn/*
+!.yarn/releases
+!.yarn/plugins.pnp.*
