@@ -14,8 +14,8 @@ function App() {
 			{/* applies default meta values to every page */}
 			<PageHelmet/>
 			<Navigation/>
-			<button data-analytics-id={"asdf"}>Click me No Event</button>
-			<a data-analytics-id={"lkj"} href={"/"}>home</a>
+			{/* <button data-analytics-id={"asdf"}>Click me No Event</button>
+			<a data-analytics-id={"lkj"} href={"/"}>home</a> */}
 		</>
 	);
 }

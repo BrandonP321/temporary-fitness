@@ -1,0 +1,24 @@
+@import "../../styles//uiBase.scss";
+
+@mixin spinnerAnimation($duration) {
+	animation: SpinSpinner $duration linear infinite;
+}
+
+.spinner {
+	@include spinnerAnimation(2s);
+	// TODO: replace placeholder styles
+	width: 10rem;
+	height: 10rem;
+	max-width: 20vw;
+	max-height: 20vw;
+	background-color: green;
+}
+
+@keyframes SpinSpinner {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
