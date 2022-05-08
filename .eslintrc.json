@@ -23,7 +23,6 @@
     ],
     "rules": {
         "camelcase": "warn",
-        "class-methods-use-this": "error",
         "comma-spacing": "warn",
         "no-unused-vars": "warn",
         "no-unused-expressions": "warn",

@@ -1,4 +1,4 @@
-@import "../../styles//uiBase.scss";
+@import "../../styles/uiBase.scss";
 
 @mixin spinnerAnimation($duration) {
 	animation: SpinSpinner $duration linear infinite;
@@ -11,7 +11,7 @@
 	height: 10rem;
 	max-width: 20vw;
 	max-height: 20vw;
-	background-color: green;
+	@include themedStyle(background-color, white, black)
 }
 
 @keyframes SpinSpinner {

@@ -1,0 +1,11 @@
+/* Applies values to given property based on the current 
+theme of the site, stored in a data attribute on <html> */
+@mixin themedStyle($property, $lightValue, $darkValue) {
+	:global(html[data-theme="light"]) & {
+		#{$property}: $lightValue;
+	}
+
+	:global(html[data-theme="dark"]) & {
+		#{$property}: $darkValue;
+	}
+}

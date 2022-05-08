@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import responsiveReducer from "@tempfit/shared/src/web/features/ResponsiveSlice/ResponsiveSlice"
+import themeReducer from "./slices/ThemeSlice/ThemeSlice";
 
 export const store = configureStore({
 	/* object of slice reducers to be combined */
 	reducer: {
-		responsive: responsiveReducer
+		responsive: responsiveReducer,
+		theme: themeReducer,
 	}
 })
 
