@@ -19,6 +19,7 @@
         "react-router-dom": "^6.3.0"
     },
     "devDependencies": {
-        "@types/axios": "^0.14.0"
+        "@types/axios": "^0.14.0",
+        "json-schema-to-typescript": "^10.1.5"
     }
 }

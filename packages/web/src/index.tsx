@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { store } from "./global/features/store";
 import { HelmetProvider } from "react-helmet-async";
+import { store } from "~ReduxStore";
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(

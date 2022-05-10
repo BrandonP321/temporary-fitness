@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import PageHelmet from "./global/components/PageHelmet/PageHelmet";
-import Navigation from "./global/Navigation/Navigation";
-import { ReduxUtils } from "./utils/ReduxUtils";
 import "destyle.css";
+import { ReduxUtils } from "~Utils";
+import PageHelmet from "~FeatureComponents/PageHelmet/PageHelmet";
+import Navigation from "~Navigation/Navigation";
 
 function App() {
 	useEffect(() => {
