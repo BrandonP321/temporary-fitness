@@ -1,10 +1,8 @@
 const { compile } = require("json-schema-to-typescript")
 const axios = require("axios");
 
-let tsString = []
-
 /**
- * helper function to setting the first letter of a schema 
+ * helper function to set the first letter of a schema 
  * type's name to lowercase to help with compiling
  * @param {*} name 
  * @returns 
@@ -23,8 +21,10 @@ const getStringWithLowerCaseFirstLetter = (name) => {
  * @param {*} mapiToken Management API token
  * @returns 
  */
-module.exports = async function genTsSchema(mapiDomain, mapiToken, typePrefix, typeSuffix) {
-	const ComponentsJson = (await getComponentsJSON(mapiDomain, mapiToken))?.data;
+module.exports = async function genTsSchema(mapiDomain, mapiToken, mapiSpaceId, typePrefix, typeSuffix) {
+	const ComponentsJson = (await getComponentsJSON(mapiDomain, mapiToken, mapiSpaceId))?.data;
+	
+	let tsString = []
 
 	for (const values of ComponentsJson.components) {
 		const obj = {}
@@ -55,7 +55,11 @@ module.exports = async function genTsSchema(mapiDomain, mapiToken, typePrefix, t
 		}
 	}
 
-	return getStringWithoutUnknownProperties(tsString.join("\n"));
+	const schemaString = getStringWithoutUnknownProperties(tsString.join("\n"));
+	const allSlugs = await getAllAvailableSlugs(mapiDomain, mapiToken, mapiSpaceId);
+	const slugsString = `export type StoryBlokSlugs = "${allSlugs?.join("\" | \"")}";\n\n`
+
+	return slugsString + schemaString;
 }
 
 function typeMapper(schema = {}) {
@@ -184,13 +188,28 @@ function customTypeParser(key, obj) {
 	}
 }
 
-getComponentsJSON = async (mapiDomain, mapiToken) => {
+const getComponentsJSON = async (mapiDomain, mapiToken, mapiSpaceId) => {
 	try {
-		return await axios.get(mapiDomain, {
+		return await axios.get(`${mapiDomain}/v1/spaces/${mapiSpaceId}/components`, {
 			headers: {
 				Authorization: mapiToken
 			}
 		})
+	} catch (err) {
+		console.log(err);
+		return undefined;
+	}
+}
+
+const getAllAvailableSlugs = async (mapiDomain, mapiToken, mapiSpaceId) => {
+	try {
+		const allStories = await axios.get(`${mapiDomain}/v1/spaces/${mapiSpaceId}/stories`, {
+			headers: {
+				Authorization: mapiToken
+			}
+		})
+
+		return allStories?.data?.stories?.map(s => !s?.is_folder && s.full_slug)?.filter(s => !!s);
 	} catch (err) {
 		console.log(err);
 		return undefined;

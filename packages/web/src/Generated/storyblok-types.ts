@@ -1,3 +1,5 @@
+export type StoryBlokSlugs = "home_page_slug" | "test-folder/home_page_slug_two" | "home";
+
 export interface StoryBlokFeature {
   name?: string;
   _uid: string;

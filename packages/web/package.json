@@ -41,7 +41,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "temp:sb:ts-update": "node ./scripts/generateComponentsJSON.js"
+    "temp:sb:ts-update": "node ./scripts/generateStoryBlokTypes.js"
   },
   "eslintConfig": {
     "extends": [
