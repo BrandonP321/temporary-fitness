@@ -19,12 +19,10 @@ export default function AreaOne() {
 }
 
 const PageOne = () => {
-	const [data, setData] = useState<TBlokWithoutDefaultProps<StoryBlokHomePage> | null>(null)
-	const [loading, setLoading] = useState(true);
+	const [data, setData] = useState<TBlokWithoutDefaultProps<StoryBlokHomePage> | null>(null);
 
 	useEffect(() => {
-		StoryBlokFetcher.fetchContent<StoryBlokHomePage>("home_page_slug")
-			.then(setData);
+		StoryBlokFetcher.fetchContent<StoryBlokHomePage>("home_page_slug").then(setData);
 	}, [])
 
 	const {
@@ -33,8 +31,7 @@ const PageOne = () => {
 
 	return (
 		<LoadingSpinnerContainer loading={!data}>
-			<h1>{Title}</h1>
-			<button onClick={() => setLoading(!loading)} style={{ position: "fixed", top: "1rem", left: "1rem" }}>Load change</button>
+			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>{Title}</h1>
 		</LoadingSpinnerContainer>
 	)
 }
