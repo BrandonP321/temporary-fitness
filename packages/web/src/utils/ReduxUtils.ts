@@ -1,5 +1,5 @@
-import { Responsive } from "../global/features/slices/ResponsiveSlice/Resonsive";
 import {ReduxUtils as SharedReduxUtils} from "@tempfit/shared/src/web/utils/ReduxUtils";
+import { Responsive } from "~ReduxSlices/ResponsiveSlice/Resonsive";
 
 /**
  * Extends ReduxUtils class from shared workspace of monorepo

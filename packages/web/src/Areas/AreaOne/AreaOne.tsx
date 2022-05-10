@@ -1,10 +1,10 @@
 import { TBlokWithoutDefaultProps } from "@tempfit/shared/src/utils/StoryBlokFetcher";
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { StoryBlokHomePage } from "../../Generated/storyblock-types";
-import { RouteDefs } from "../../global/Navigation/RouteDefs";
-import { LoadingSpinnerContainer } from "../../global/UI/UIComponents/LoadingSpinner/LoadingSpinner";
-import { StoryBlokFetcher } from "../../utils/StoryBlokFetcher";
+import { StoryBlokHomePage } from "~StoryBlokTypes";
+import { RouteDefs } from "~Navigation/RouteDefs";
+import { StoryBlokFetcher } from "~Utils";
+import { LoadingSpinnerContainer } from "~UIComponents/LoadingSpinner/LoadingSpinner";
 
 const Pages = RouteDefs.Areas.AreaOne.pages
 
