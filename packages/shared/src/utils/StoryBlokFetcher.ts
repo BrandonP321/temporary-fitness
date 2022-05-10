@@ -10,6 +10,11 @@ type StoryBlokFetcherInternalParams = {
 	version: string;
 }
 
+/**
+ * Utility class for fetching content from the Storyblok CMS.  It is intended 
+ * that you create a new instance of this fetcher so that you get appropriately 
+ * typed parameters and responses when fetching content
+ */
 export class StoryBlokFetcherInternal<TSlugs extends string> {
 	private apiDomain;
 	private apiToken;
