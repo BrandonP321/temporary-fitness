@@ -10,7 +10,7 @@ type StoryBlokFetcherInternalParams = {
 	version: string;
 }
 
-export class StoryBlokFetcherInternal {
+export class StoryBlokFetcherInternal<TSlugs extends string> {
 	private apiDomain;
 	private apiToken;
 	private version;
@@ -22,7 +22,7 @@ export class StoryBlokFetcherInternal {
 	}
 
 	/* fetches content based on a slug for that content entry */
-	public fetchContent = <T extends TBlokDefaults>(slug: string) => {
+	public fetchContent = <T extends TBlokDefaults>(slug: TSlugs) => {
 		return new Promise<TBlokWithoutDefaultProps<T>>(async (resolve, reject) => {
 			try {
 				const contentRes = await axios.get<{ story: { content: TBlokWithoutDefaultProps<T> } }>(this.getEndpointFromSlug(slug));
