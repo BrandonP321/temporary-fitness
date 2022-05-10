@@ -48,14 +48,14 @@ module.exports = async function genTsSchema(mapiDomain, mapiToken, typePrefix, t
 			obj.required = requiredFields
 		}
 		try {
-			const ts = await compile(obj, values.name, { bannerComment: "" })
+			const ts = await compile(obj, values.name, { bannerComment: "", unreachableDefinitions: false })
 			tsString.push(ts)
 		} catch (e) {
 			console.log(e)
 		}
 	}
 
-	return tsString.join("\n");
+	return getStringWithoutUnknownProperties(tsString.join("\n"));
 }
 
 function typeMapper(schema = {}) {
@@ -195,4 +195,8 @@ getComponentsJSON = async (mapiDomain, mapiToken) => {
 		console.log(err);
 		return undefined;
 	}
+}
+
+const getStringWithoutUnknownProperties = (schemaString) => {
+	return schemaString.replace(/(?<=;[\s]*)\s\s\[k: string]: unknown;\n/gi, "")
 }
