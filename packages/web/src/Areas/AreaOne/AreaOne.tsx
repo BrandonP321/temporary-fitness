@@ -4,7 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import { StoryBlokHomePage } from "~StoryBlokTypes";
 import { RouteDefs } from "~Navigation/RouteDefs";
 import { StoryBlokFetcher } from "~Utils";
-import { LoadingSpinnerContainer } from "~UIComponents/LoadingSpinner/LoadingSpinner";
+import { useAppDispatch } from "~ReduxHooks";
+import { hideLoadingSpinner, showLoadingSpinner } from "~ReduxSlices/PageLoadingSlice/pageLoadingSlice";
+import { Link } from "react-router-dom";
 
 const Pages = RouteDefs.Areas.AreaOne.pages
 
@@ -13,16 +15,22 @@ export default function AreaOne() {
 	return (
 		<Routes>
 			<Route path={Pages.PageOne.partialPath} element={<PageOne/>}/>
-			<Route path={Pages.PageTwo.partialPath} element={<h1/>}/>
+			<Route path={Pages.PageTwo.partialPath} element={<PageTwo/>}/>
 		</Routes>
 	)
 }
 
 const PageOne = () => {
+	const dispatch = useAppDispatch();
 	const [data, setData] = useState<TBlokWithoutDefaultProps<StoryBlokHomePage> | null>(null);
 
 	useEffect(() => {
-		StoryBlokFetcher.fetchContent<StoryBlokHomePage>("home_page_slug").then(setData);
+		dispatch(showLoadingSpinner());
+		StoryBlokFetcher.fetchContent<StoryBlokHomePage>("home_page_slug")
+			.then(res => {
+				setData(res);
+				dispatch(hideLoadingSpinner());
+			});
 	}, [])
 
 	const {
@@ -30,8 +38,23 @@ const PageOne = () => {
 	} = data ?? {}
 
 	return (
-		<LoadingSpinnerContainer loading={!data}>
+		<div>
 			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>{Title}</h1>
-		</LoadingSpinnerContainer>
+			<Link to={"/AreaOneX/PageTwoY"}>Go To Page Two</Link>
+		</div>
+	)
+}
+
+const PageTwo = () => {
+
+	useEffect(() => {
+		console.log("show spinner")
+	}, [])
+
+	return (
+		<div>
+			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>Page Two</h1>
+			<Link to={"/AreaOneX/PageOneX"}>Go To Page One</Link>
+		</div>
 	)
 }
