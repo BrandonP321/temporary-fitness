@@ -47,10 +47,6 @@ const PageOne = () => {
 
 const PageTwo = () => {
 
-	useEffect(() => {
-		console.log("show spinner")
-	}, [])
-
 	return (
 		<div>
 			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>Page Two</h1>

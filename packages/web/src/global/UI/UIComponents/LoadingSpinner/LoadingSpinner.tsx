@@ -22,6 +22,6 @@ export const LoadingSpinnerContainer = (props: LoadingSpinnerContainerProps) => 
   const { ...rest } = props;
 
   return (
-    <LoadingContainerInternal {...rest} spinner={<LoadingSpinner />} fadeInOutDurationMs={300} loading={loading}/>
+    <LoadingContainerInternal {...rest} spinner={<LoadingSpinner />} fadeInOutDurationMs={200} loading={loading}/>
   )
 }
