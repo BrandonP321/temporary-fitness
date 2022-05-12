@@ -12,7 +12,8 @@ export default React.memo(function Navigation() {
 			<Routes>
 				{/* Renders all Areas <Route>'s as loadable 
 				components with dynamic imports for code splitting */}
-				{RouteDefs?.renderAreaRoutes(<FallbackComponent dispatch={dispatch}/>)}
+				{/* {RouteDefs?.renderAreaRoutes(<FallbackComponent dispatch={dispatch}/>)} */}
+				{RouteDefs?.renderAreaRoutes()}
 				
 				{/* 404 route for all uncaught urls */}
 				<Route path={"*"} element={<h1>404</h1>}/>

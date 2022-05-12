@@ -99,12 +99,12 @@ export class InternalRouteDefs<AllAreaNames extends TAreaNames, TPageNames exten
 	}
 
 	/* Maps over areas and returns the appropriate <Route> as a loadable comonent with a dynamic import to introduce code splitting */
-	public renderAreaRoutes = (fallbackComponent: JSX.Element) => {
+	public renderAreaRoutes = () => {
 		return this.AreasArr.map(area => (
 			<Route
 				key={area?.name}
 				path={`/${area?.name}/*`}
-				element={<AsyncComponent lazyComponentDynamicImport={area?.areaDynamicImport} fallbackComponent={fallbackComponent}/>}
+				element={<AsyncComponent lazyComponentDynamicImport={area?.areaDynamicImport}/>}
 			/>
 		))
 	}
