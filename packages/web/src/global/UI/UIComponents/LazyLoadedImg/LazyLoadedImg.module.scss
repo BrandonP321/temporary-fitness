@@ -1,0 +1,78 @@
+@import "../../styles/uiBase.scss";
+
+// <IMG> STYLES
+
+.imgWrapper {
+	position: relative;
+
+	&.blur {
+
+		.blurOverlay {
+			pointer-events: all;
+			backdrop-filter: blur(1rem);
+		}
+
+		/* remove low res img when full res is visible */
+		.lowResImg {
+			display: block;
+		}
+
+		.fullResImg {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+}
+
+.fullResImg {
+	position: relative;
+}
+
+.blurOverlay {
+	pointer-events: none;
+	transition: backdrop-filter 0.5s;
+}
+
+.lowResImg,
+.fullResImg,
+.blurOverlay {
+	display: block;
+	width: 100%;
+}
+
+.lowResImg {
+	display: none;
+}
+
+.blurOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+
+// BG DIV STYLES
+
+.bgDiv,
+.bgDivFullImg {
+	background-size: 1920px auto;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+.bgDiv {
+	position: relative;
+}
+
+.bgDivFullImg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.childrenWrapper {
+	position: relative;
+}

@@ -11,7 +11,7 @@
 	height: 10rem;
 	max-width: 20vw;
 	max-height: 20vw;
-	@include themedStyle(background-color, white, black)
+	@include themedStyle(background-color, gray, black)
 }
 
 @keyframes SpinSpinner {
