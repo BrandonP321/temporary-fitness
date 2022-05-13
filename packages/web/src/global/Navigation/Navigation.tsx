@@ -37,7 +37,7 @@ export default React.memo(function Navigation() {
 
 					{/* Renders all Areas <Route>'s as loadable 
 					components with dynamic imports for code splitting */}
-					{RouteDefs.renderAreaRoutes()}
+					{/* {RouteDefs.renderAreaRoutes()} */}
 
 					<Route path="/BelowOne" element={<BelowOne/>}/>
 					<Route path="/BelowTwo" element={<BelowTwo/>}/>
