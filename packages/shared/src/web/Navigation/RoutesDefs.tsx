@@ -1,9 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, RouteProps } from "react-router-dom";
-import { AsyncComponent } from "./Navigation";
+import React, { lazy } from "react";
+import { Route } from "react-router-dom";
 
 /* Type for object of area names with string key and string value */
-type TAreaNames = {[key: string]: string};
+type TAreaNames = { [key: string]: string };
 
 type TAreaPageWithFullData = {
 	/* Area that page is nested within */
@@ -20,15 +19,15 @@ type TAreaPageWithPathOnly = {
 
 /* Type for object of Areas with all the pages nested within each area */
 type TAreas<AreaNames extends TAreaNames, PageNames extends string, PageData extends {} = TAreaPageWithFullData> = {
-    [AreaNameKey in keyof AreaNames]: {
-        name: AreaNames[AreaNameKey];
+	[AreaNameKey in keyof AreaNames]: {
+		name: AreaNames[AreaNameKey];
 		/* Dynamic import must use 'any' type since there isn't 
 		a generic return type used for dynamic imports */
 		areaDynamicImport: () => Promise<any>;
-        pages: {
-            [key in PageNames]: PageData
-        }
-    }
+		pages: {
+			[key in PageNames]: PageData
+		}
+	}
 }
 
 type TGenericAreas = TAreas<any, string>;
@@ -40,8 +39,8 @@ type TAreasWithPagePathOnly<AreaNames extends TAreaNames, PageNames extends stri
  * within each area for use in rendering <Route>'s and navigating the site
  */
 type InternalRouteDefsParams<AreaNames extends TAreaNames, TPageNames extends string> = {
-    AreaNames: { [key: string]: string };
-    Areas: TAreasWithPagePathOnly<AreaNames, TPageNames>;
+	AreaNames: { [key: string]: string };
+	Areas: TAreasWithPagePathOnly<AreaNames, TPageNames>;
 }
 
 export class InternalRouteDefs<AllAreaNames extends TAreaNames, TPageNames extends string> {
@@ -71,7 +70,7 @@ export class InternalRouteDefs<AllAreaNames extends TAreaNames, TPageNames exten
 					parentArea: area.name,
 					partialPath: `/${page.path}`
 				}
-				
+
 				modifiedAreas[areaKey] = {
 					...area,
 					pages: {
@@ -100,12 +99,16 @@ export class InternalRouteDefs<AllAreaNames extends TAreaNames, TPageNames exten
 
 	/* Maps over areas and returns the appropriate <Route> as a loadable comonent with a dynamic import to introduce code splitting */
 	public renderAreaRoutes = () => {
-		return this.AreasArr.map(area => (
-			<Route
-				key={area?.name}
-				path={`/${area?.name}/*`}
-				element={<AsyncComponent lazyComponentDynamicImport={area?.areaDynamicImport}/>}
-			/>
-		))
+		return this.AreasArr.map(area => {
+			const AreaComponent = React.lazy(area.areaDynamicImport);
+
+			return (
+				<Route
+					key={area?.name}
+					path={`/${area?.name}/*`}
+					element={<AreaComponent/>}
+				/>
+			)
+		})
 	}
 }

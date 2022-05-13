@@ -5,26 +5,25 @@ import { hideLoadingSpinner, showLoadingSpinner } from "~ReduxSlices/PageLoading
 import { RouteDefs } from "./RouteDefs";
 
 export default React.memo(function Navigation() {
-	const dispatch = useAppDispatch();
-
 	return (
 		<Router>
-			<Routes>
-				{/* Renders all Areas <Route>'s as loadable 
-				components with dynamic imports for code splitting */}
-				{/* {RouteDefs?.renderAreaRoutes(<FallbackComponent dispatch={dispatch}/>)} */}
-				{RouteDefs?.renderAreaRoutes()}
-				
-				{/* 404 route for all uncaught urls */}
-				<Route path={"*"} element={<h1>404</h1>}/>
-			</Routes>
+			<React.Suspense fallback={<FallbackComponent/>}>
+				<Routes>
+					{/* Renders all Areas <Route>'s as loadable 
+					components with dynamic imports for code splitting */}
+					{RouteDefs?.renderAreaRoutes()}
+					
+					{/* 404 route for all uncaught urls */}
+					<Route path={"*"} element={<h1>404</h1>}/>
+				</Routes>
+			</React.Suspense>
 		</Router>
 	)
 })
 
 /* Fallback component that shows loading spinner on mount and hides on unmount */
-const FallbackComponent = (props: { dispatch: ReturnType<typeof useAppDispatch> }) => {
-	const { dispatch } = props;
+const FallbackComponent = () => {
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		// show loading spinner on mount
@@ -39,6 +38,6 @@ const FallbackComponent = (props: { dispatch: ReturnType<typeof useAppDispatch> 
 	}
 
 	return (
-		<></>
+		<div/>
 	)
 }
