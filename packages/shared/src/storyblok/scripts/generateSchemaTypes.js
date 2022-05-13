@@ -216,6 +216,7 @@ const getAllAvailableSlugs = async (mapiDomain, mapiToken, mapiSpaceId) => {
 	}
 }
 
+/* removes unkown key-value property from all types */
 const getStringWithoutUnknownProperties = (schemaString) => {
 	return schemaString.replace(/(?<=;[\s]*)\s\s\[k: string]: unknown;\n/gi, "")
 }
