@@ -4,8 +4,8 @@ export class BrowserUtils {
 		/* first set width of <body> to vw - scrollbar width (which is equal to it's current width)
 		to prevent page content from shifting when the scrollbar is hidden*/
 		const scrollbarWidth = window.innerWidth - document.body.clientWidth;
-		document.body.style.width = `100vw - ${scrollbarWidth}px`;
-
+		
+		document.body.style.width = `calc(100vw - ${scrollbarWidth}px)`;
 		document.body.style.overflow = "hidden";
 	}
 

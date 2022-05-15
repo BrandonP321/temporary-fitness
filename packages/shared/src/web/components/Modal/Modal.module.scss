@@ -1,0 +1,40 @@
+$defaultOverlayColor: rgba(0, 0, 0, 0.7);
+
+.outerWrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	pointer-events: none;
+
+	&.show {
+		opacity: 1;
+		pointer-events: all;
+
+		.pageOverlay {
+
+		}
+
+		.modal {
+			transform: scale(1);
+		}
+	}
+}
+
+.pageOverlay {
+	background-color: $defaultOverlayColor;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.modal {
+	position: relative;
+}

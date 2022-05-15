@@ -7,6 +7,7 @@ import { StoryBlokFetcher } from "~Utils";
 import { useAppDispatch } from "~ReduxHooks";
 import { hideLoadingSpinner, showLoadingSpinner } from "~ReduxSlices/PageLoadingSlice/pageLoadingSlice";
 import { Link } from "react-router-dom";
+import Modal from "~UIComponents/Modal/Modal";
 
 const Pages = RouteDefs.Areas.AreaOne.pages
 
@@ -45,12 +46,24 @@ const PageOne = () => {
 	)
 }
 
+const tempText = Array(30).fill("Page Two").join(" ");
+
 const PageTwo = () => {
+	const [showModal, setShowModal] = useState(false);
 
 	return (
 		<div>
 			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>Page Two</h1>
+			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>{tempText}</h1>
+			<button onClick={() => setShowModal(true)}>show modal</button>
 			<Link to={"/AreaOneX/PageOneX"}>Go To Page One</Link>
+			<Modal hide={() => setShowModal(false)} show={showModal}>
+				<div style={{
+
+				}}>
+					<h1 style={{ fontSize: "5rem", textAlign: "center" }}>My Modal</h1>
+				</div>
+			</Modal>
 		</div>
 	)
 }
